@@ -51,9 +51,37 @@ function findPrimeV2(N) {
 }
 
 
+function findPrimeV3(N) {
+    var i = 2, j = 2;
+    var count = 0;
+
+    for(; i < N; i++) {
+        count++;
+        var k = false;
+        var temp = Math.floor(i / 2);
+        if (j === 2 && i % j === 0) {
+            k = true;
+            primes.push(i);
+        }
+        j++;
+        for(; j <= temp; j+=2) {
+            count++;
+            if (i % j === 0) {
+                k = true;
+            }
+        }
+        if (!k) {
+            primes.push(i);
+        }
+        j = 2;
+    }
+    console.log('执行了: %s次', count);
+}
+
 function main() {
     // findPrimeV1(100);
-    findPrimeV2(100);
+    // findPrimeV2(100);
+    findPrimeV3(100);
 
     console.log(primes.join(','));    
 }
